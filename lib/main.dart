@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rana_invoice/features/dashboard/presentaion/dashboard.dart';
 import 'package:system_theme/system_theme.dart';
 
 void main() async {
@@ -36,15 +37,17 @@ class _MyAppState extends State<MyApp> {
           // accentColor: AccentColor.resolve(SystemTheme.accentInstance.accent, context),
           // brightness: isDarkMode ? Brightness.dark : Brightness.light,
           ),
-      home: const MyHomePage(title: 'RANA INVOICE'),
+      // home: const MyHomePage(),
+      routes: {
+        "/": (context) => const MyHomePage(),
+        "/dashboard": (context) => const RanaDashboard()
+      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -55,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     Future.delayed(
       const Duration(seconds: 2),
-      () => print("timeout"),
+      () => Navigator.pushNamed(context, "/dashboard"),
     );
     super.initState();
   }
